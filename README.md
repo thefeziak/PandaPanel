@@ -1,2 +1,23 @@
+![Logo Image](./logo.png)
+
+![Discord](https://img.shields.io/discord/1335951998876389529?label=Discord&logo=Discord&logoColor=white&style=for-the-badge)
+![GitHub Releases](https://img.shields.io/github/downloads/thefeziak/pandapanel/latest/total?style=for-the-badge)
+![GitHub contributors](https://img.shields.io/github/contributors/thefeziak/pandapanel?style=for-the-badge)
+
 # PandaPanel
-PandaPanel is a free, open-source game server management panel built with Python.
+
+PandaPanel® is a free, open-source game server management panel built with PHP, React, and Go
+
+## Documentation
+
+* Is on [Discord](https://discord.gg/v6jJr4PqY4)
+
+### Supported Games
+
+PandaPanel supports all games! Default only Minecraft and Python, but you can write your own egg.
+
+## License
+
+PandaPanel Copyright © 2025
+
+Code released under the [Apache 2.0 License](./LICENSE).
