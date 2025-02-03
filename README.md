@@ -18,6 +18,6 @@ PandaPanel supports all games! Default only Minecraft and Python, but you can wr
 
 ## License
 
-PandaPanel Copyright © 2025
+PandaPanel Copyright © 2025, Contributors: thefeziak
 
-Code released under the [Apache 2.0 License](./LICENSE).
+Code released under the [Apache License 2.0](./LICENSE).
