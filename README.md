@@ -14,7 +14,7 @@ PandaPanel® is a free, open-source game server management panel built with Pyth
 
 ### Supported Games
 
-PandaPanel supports all games! Default only Minecraft and Python, but you can write your own egg.
+PandaPanel supports all games, if you will write own egg, default only Minecraft and Python.
 
 ## License
 
