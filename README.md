@@ -4,7 +4,7 @@
 ![GitHub Releases](https://img.shields.io/github/downloads/thefeziak/pandapanel/latest/total?style=for-the-badge)
 ![GitHub contributors](https://img.shields.io/github/contributors/thefeziak/pandapanel?style=for-the-badge)
 
-# [Logo Image](./logo.png) PandaPanel
+# PandaPanel
 
 PandaPanel® is a free, open-source game server management panel built with Python.
 
