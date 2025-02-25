@@ -1,3 +1,5 @@
 {
-    "SECRET_KEY": "panda2137"
+    "SECRET_KEY": "panda2137",
+    "HOST": "0.0.0.0",
+    "PORT": 8080
 }
