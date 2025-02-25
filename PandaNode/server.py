@@ -2,7 +2,7 @@ import subprocess
 from flask import Flask, request, jsonify
 import json
 
-config = json.load("config.json", "r")
+config = json.load(open("config.json", "r"))
 secret_key_ = config["SECRET_KEY"]
 host = config["HOST"]
 port = config["PORT"]
