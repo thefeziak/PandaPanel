@@ -14,7 +14,10 @@ wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/Pand
 wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaNode/requirements.txt
 wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaNode/config.json
 pip install -r requirements.txt
-
+mkdir DockerConfiguration
+wget 
+docker build -t ubuntu2204 .
+wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaNode/Dockerfile
 echo "---------- Done ----------"
 echo "Run with python3 server.py"
 echo "---------- Done ----------"
