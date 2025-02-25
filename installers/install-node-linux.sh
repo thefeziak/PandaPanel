@@ -3,6 +3,7 @@
 apt update
 apt install python3
 apt install python3-pip
+apt install docker.io
 
 cd /
 mkdir Panda
