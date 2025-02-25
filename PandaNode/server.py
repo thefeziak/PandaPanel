@@ -2,7 +2,10 @@ import subprocess
 from flask import Flask, request, jsonify
 import json
 
-secret_key_ = json.load("config.json", "r")
+config = json.load("config.json", "r")
+secret_key_ = config["SECRET_KEY"]
+host = config["HOST"]
+port = config["PORT"]
 
 app = Flask(__name__)
 
@@ -84,4 +87,4 @@ def restart():
         return jsonify({'error': str(e)}), 400
 
 if __name__ == '__main__':
-    app.run(port=8080)
+    app.run(host=host, port=port)
