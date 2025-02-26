@@ -9,11 +9,11 @@ port = config["PORT"]
 
 app = Flask(__name__)
 
-@app.route('/execute', methods=['POST'])
+@app.route('/execute')
 def execute():
     try:
         command = request.args.get('command')
-        container_name = request.args.get('container_name')
+        container_name = request.args.get('container')
         secret_key = request.args.get('secret_key')
 
         if secret_key != secret_key_:
@@ -29,10 +29,10 @@ def execute():
     except Exception as e:
         return jsonify({'error': str(e)}), 400
     
-@app.route('/start', methods=['POST'])
+@app.route('/start')
 def start():
     try:
-        container_name = request.args.get('container_name')
+        container_name = request.args.get('container')
         secret_key = request.args.get('secret_key')
 
         if secret_key != secret_key_:
@@ -48,10 +48,10 @@ def start():
     except Exception as e:
         return jsonify({'error': str(e)}), 400
     
-@app.route('/stop', methods=['POST'])
+@app.route('/stop')
 def stop():
     try:
-        container_name = request.args.get('container_name')
+        container_name = request.args.get('container')
         secret_key = request.args.get('secret_key')
 
         if secret_key != secret_key_:
@@ -89,7 +89,7 @@ def restart():
 @app.route('/delete', methods=['POST'])
 def delete():
     try:
-        container_name = request.args.get('container_name')
+        container_name = request.args.get('container')
         secret_key = request.args.get('secret_key')
 
         if secret_key != secret_key_:
@@ -113,7 +113,7 @@ def create():
         if secret_key != secret_key_:
             return jsonify({'error': "Invalid secret key."}), 400
 
-        cmd = "docker run -itd --privileged --hostname panda --cap-add=ALL ubuntu2204"
+        cmd = "docker run -itd --privileged --hostname panda --cap-add=ALL ubuntu:22.04"
 
         result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
 
