@@ -10,13 +10,13 @@ wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/Pand
 wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/panel.ini
 mkdir file_data && cd file_data && wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/file_data/file_data.json && cd ..
 mkdir templates && cd templates
-wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/admin.html
-wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/dash.html
-wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/login.html
-wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/manage.html
-wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/manage_console.html
-wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/password.html
-wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/password_reset.html
+wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/templates/admin.html
+wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/templates/dash.html
+wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/templates/login.html
+wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/templates/manage.html
+wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/templates/manage_console.html
+wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/templates/password.html
+wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/templates/password_reset.html
 cd ..
 mkdir pages && cd pages
 mkdir admin && cd admin && wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/pages/admin/__init__.py
