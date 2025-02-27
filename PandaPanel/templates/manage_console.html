@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: transparent;
+            color: #333;
+            font-family: "Arial", sans-serif;
+        }
+
+        #terminal {
+            width: 100vw;
+            height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 3px solid #8dc63f;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            font-family: "Courier New", monospace;
+        }
+
+        #terminal::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #terminal::-webkit-scrollbar-thumb {
+            background-color: #76b637;
+            border-radius: 10px;
+        }
+
+        #terminal::-webkit-scrollbar-track {
+            background-color: transparent;
+        } 
+
+        .input-line {
+            display: flex;
+            align-items: center;
+        }
+
+        .prompt {
+            color: #76b637;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .input {
+            flex-grow: 1;
+            outline: none;
+            background: transparent;
+            border: none;
+            color: #333;
+            font: inherit;
+        }
+
+        .output {
+            margin: 4px 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div id="terminal"></div>
+
+    <script>
+        const terminal = document.getElementById('terminal');
+
+        function createInputLine() {
+            const inputLine = document.createElement('div');
+            inputLine.className = 'input-line';
+
+            const prompt = document.createElement('span');
+            prompt.className = 'prompt';
+            prompt.textContent = 'container@pandapanel:~#';
+
+            const input = document.createElement('input');
+            input.className = 'input';
+            input.autofocus = true;
+
+            inputLine.appendChild(prompt);
+            inputLine.appendChild(input);
+            terminal.appendChild(inputLine);
+            input.focus();
+
+            input.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') {
+                    const command = input.value.trim();
+                    executeCommand(command);
+                    input.disabled = true;
+                    input.blur();
+                }
+            });
+
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        async function executeCommand(cmd) {
+            const output = document.createElement('div');
+            output.className = 'output';
+            let api_output;
+
+            try {
+                const response = await fetch(window.location.href + `/execute?cmd=${cmd}`);
+                if (!response.ok) {
+                    api_output = `Error occurred: response status is ${response.status}`;
+                } else {
+                    api_output = await response.text();
+                }
+            } catch (error) {
+                api_output = "Error occurred: " + error;
+            }
+
+            output.textContent = api_output;  
+            terminal.appendChild(output);
+            terminal.scrollTop = terminal.scrollHeight;
+
+            createInputLine();
+        }
+
+        createInputLine();
+    </script>
+</body>
+</html>

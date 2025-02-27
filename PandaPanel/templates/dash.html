@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{name}}</title>
+    <meta property="og:title" content="{{name}}">
+    <meta property="og:description" content="{{name}} uses the best panel for hosting game servers, namely PandaPanel">
+    <meta property="og:image" content="/static/png/logo.png">
+    <link rel="icon" href="/static/png/logo.png" type="image/png">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div id="music">
+        <iframe id="youtubePlayer" width="0" height="0" src="https://www.youtube.com/embed/rYlSAtIL79U?autoplay=1&loop=1&playlist=rYlSAtIL79U&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+    <div class="gif-background"></div>
+
+    <img id="muteButton" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Speaker_Icon.svg" alt="Mute" />
+
+    <div class="text-container">
+        <h1>{{name}}</h1>
+    </div>
+
+    <div class="buttons-container">
+        {% if admin %}
+            <button onclick="window.location.href='/admin'">Admin</button>
+        {% endif %}
+        <button onclick="window.location.href='/'">Servers</button>
+        <button onclick="window.location.href='/account'">Account</button>
+        <button onclick="window.location.href='/auth/logout'">Logout</button>
+    </div>
+    <div class="servers-container">
+        {% if servers|length == 0 %}
+            <element id="noservers"><h2>There are no servers associated with your account.</h2></element>
+        {% else %}
+            {% for server in servers %}
+                <a href="/manage/{{ server['id'] }}">
+                    <div class="server-container">
+                        <div class="serverLogo">
+                            <img id="serverLogo" src="/static/png/server-icon.png" alt="ServerLogo" />
+                        </div>
+                        <h2>{{ server['name'] }}</h2>
+                    </div>
+                </a>
+            {% endfor %}
+        {% endif %}
+    </div>    
+
+    <footer>
+        <p>&copy; 2025 PandaPanel All rights reserved.</p>
+    </footer>
+    
+    <script src="/static/js/mute.js"></script>
+</body>
+</html>

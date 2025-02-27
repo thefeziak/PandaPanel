@@ -1,0 +1,19 @@
+{
+    "Users": {},
+    "Nodes": {
+        "LocalNode": {
+            "Settings": {
+                "FQDN": "127.0.0.1",
+                "Port": 8080
+            },
+            "Servers": [
+                {
+                    "name": "ubuntu 20.04",
+                    "id": "a5f3ec10dbc3417aa401c555",
+                    "owner": "acec8162474d4a03b2cc9927"
+                }
+            ]
+        }
+    },
+    "Forgot-Password-Keys": {}
+}

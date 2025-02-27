@@ -1,0 +1,244 @@
+body {
+    font-family: 'Comic Sans MS', sans-serif;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    background-color: #f7f7f7;
+}
+
+.buttons-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+.control-buttons-container {
+    position: absolute;
+    top: 150px;
+    right: 800px;
+    display: flex;
+    gap: 8px;
+}
+
+.text-container {
+    position: absolute;
+    top: -55px;
+    display: flex;
+    gap: 8px;
+}
+
+.gif-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/static/gif/background.gif') no-repeat center center/cover;
+    z-index: -1;
+    filter: brightness(1.5);
+}
+
+.container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+    border: 3px solid #8dc63f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+    height: 600px;
+}
+
+.server-container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+    border: 3px solid #8dc63f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+    height: 50px;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+    margin-bottom: 15px;
+}
+
+.server-container h2 {
+    position: absolute;
+    top: 10px;
+    left: 240px;
+    margin: 0;
+    color: #76b637;
+}
+
+.server-container:hover {
+    filter: brightness(0.9);
+    transform: scale(1.02);
+}
+
+h1 {
+    font-size: 5rem;
+    font-weight: bold;
+    color: #2e2e2e;
+    margin-bottom: 30px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    padding: 15px;
+    border: 2px solid #8dc63f;
+    border-radius: 10px;
+    width: 350px;
+    background: #ffffff;
+    color: #333;
+    text-align: center;
+    outline: none;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+input::placeholder {
+    color: #999;
+}
+
+button {
+    padding: 15px 30px;
+    margin-top: 20px;
+    background-color: #8dc63f;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 90%;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: #76b637;
+    transform: scale(1.05);
+}
+
+#error_text {
+    color: #cc0000;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    position: absolute;
+    top: 25%;
+    width: 100%;
+}
+
+#forgot {
+    color: #34b34d;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+    font-size: 1.5rem;
+}
+
+#forgot:hover {
+    color: #23963a;
+    transform: scale(1.05);
+}
+
+#muteButton {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: opacity 0.3s ease, transform 0.2s ease-in-out;
+}
+
+#muteButton:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+#muteButton {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: opacity 0.3s ease, transform 0.2s ease-in-out;
+}
+
+#muteButton:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+}
+
+.serverLogo {
+    width: 15%;
+    position: absolute;
+    top: 15px;
+    left: 30px;
+    margin: 0;
+}
+  
+.serverLogo img {
+    width: 100%;
+    height: auto;
+    filter: brightness(0) saturate(100%) invert(35%) sepia(80%) saturate(500%) hue-rotate(85deg);
+}
+
+.servers-container {
+    display: flex;
+    flex-direction: column;
+    height: 735px;
+    width: 700px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.servers-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.servers-container::-webkit-scrollbar-thumb {
+    background-color: #76b637;
+    border-radius: 10px;
+}
+
+.servers-container::-webkit-scrollbar-track {
+    background-color: transparent;
+} 
+
+.servers-container #noservers h2 {
+    position: absolute;
+    top: 150px;
+    left: 670px;
+    margin: 0;
+    color: #76b637;
+}
