@@ -11,18 +11,18 @@ import sys
 
 os.system('')
 
-#sys.stdout = open(os.devnull, 'w')
-#sys.stderr = open(os.devnull, 'w')
+sys.stdout = open(os.devnull, 'w')
+sys.stderr = open(os.devnull, 'w')
 
 org_print = print
 org_input = input
 
 def log(what):
-    #sys.stdout = sys.__stdout__
-    #sys.stderr = sys.__stderr__
+    sys.stdout = sys.__stdout__
+    sys.stderr = sys.__stderr__
     org_print(what)
-    #sys.stdout = open(os.devnull, 'w')
-    #sys.stderr = open(os.devnull, 'w')
+    sys.stdout = open(os.devnull, 'w')
+    sys.stderr = open(os.devnull, 'w')
 
 print = log
 
