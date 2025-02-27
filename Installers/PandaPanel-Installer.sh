@@ -34,7 +34,7 @@ mkdir js && cd js && wget https://raw.githubusercontent.com/thefeziak/PandaPanel
 mkdir png && cd png && wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/static/png/logo.png && wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/static/png/server-icon.png && cd ..
 cd ..
 pip install -r requirements.txt
-echo -e '#!/bin/bash\n\npython3 /etc/Panda/Node/server.py' | tee /bin/PandaNode > /dev/null && chmod +x /bin/PandaNode
+echo -e '#!/bin/bash\n\npython3 /etc/Panda/Panel/server.py' | tee /bin/PandaPanel > /dev/null && chmod +x /bin/PandaPanel
 echo "-----------------------------"
 echo "Installed in /etc/Panda/Panel"
 echo "Run using PandaPanel command!"
