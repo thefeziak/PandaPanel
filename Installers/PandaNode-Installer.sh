@@ -7,7 +7,7 @@ cd /etc && mkdir Panda && cd Panda && mkdir Node && cd Node
 wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaNode/server.py
 wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaNode/requirements.txt
 wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaNode/config.json
-pip install -r requirements.txt
+pip install -r /etc/Panda/Node/requirements.txt
 mkdir DockerConfiguration
 cd DockerConfiguration
 wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaNode/Dockerfile
