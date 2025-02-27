@@ -3,38 +3,41 @@
 apt update
 apt install python3 python3-pip -y
 
-cd /etc && mkdir Panda && cd Panda && mkdir Panel && cd Panel
-wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/server.py
-wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/function_file.py
-wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/requirements.txt
-wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/panel.ini
-mkdir file_data && cd file_data && wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/file_data/file_data.json && cd ..
-mkdir templates && cd templates
-wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/templates/admin.html
-wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/templates/dash.html
-wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/templates/login.html
-wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/templates/manage.html
-wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/templates/manage_console.html
-wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/templates/password.html
-wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/templates/password_reset.html
-cd ..
-mkdir pages && cd pages
-mkdir admin && cd admin && wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/pages/admin/__init__.py
-mkdir auth_login && cd auth_login && wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/pages/auth_login/__init__.py
-mkdir auth_logout && cd auth_logout && wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/pages/auth_logout/__init__.py
-mkdir auth_password && cd auth_password && wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/pages/auth_password/__init__.py
-mkdir auth_password_reset && cd auth_password_reset && wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/pages/auth_password_reset/__init__.py
-mkdir index && cd index && wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/pages/index/__init__.py
-mkdir manage && cd manage && wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/pages/manage/__init__.py
-cd ..
-mkdir static
-mkdir css && cd css && wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/static/css/style.css && cd ..
-mkdir gif && cd gif && wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/static/gif/background.gif && cd ..
-mkdir js && cd js && wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/static/js/mute.js && cd ..
-mkdir png && cd png && wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/static/png/logo.png && wget https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/static/png/server-icon.png && cd ..
-cd ..
-pip install -r /etc/Panda/Panel/requirements.txt
-echo -e '#!/bin/bash\n\npython3 /etc/Panda/Panel/server.py' | tee /bin/PandaPanel > /dev/null && chmod +x /bin/PandaPanel
+mkdir -p /etc/Panda/Panel/file_data /etc/Panda/Panel/templates /etc/Panda/Panel/pages/admin /etc/Panda/Panel/pages/auth_login \
+         /etc/Panda/Panel/pages/auth_logout /etc/Panda/Panel/pages/auth_password /etc/Panda/Panel/pages/auth_password_reset \
+         /etc/Panda/Panel/pages/index /etc/Panda/Panel/pages/manage /etc/Panda/Panel/static/css /etc/Panda/Panel/static/gif \
+         /etc/Panda/Panel/static/js /etc/Panda/Panel/static/png
+
+cd /etc/Panda/Panel || exit
+
+wget -q --show-progress https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/server.py
+wget -q --show-progress https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/function_file.py
+wget -q --show-progress https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/requirements.txt
+wget -q --show-progress https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/panel.ini
+
+wget -q --show-progress -P /etc/Panda/Panel/file_data https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/file_data/file_data.json
+
+wget -q --show-progress -P /etc/Panda/Panel/templates https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/templates/{admin.html,dash.html,login.html,manage.html,manage_console.html,password.html,password_reset.html}
+
+wget -q --show-progress -P /etc/Panda/Panel/pages/admin https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/pages/admin/__init__.py
+wget -q --show-progress -P /etc/Panda/Panel/pages/auth_login https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/pages/auth_login/__init__.py
+wget -q --show-progress -P /etc/Panda/Panel/pages/auth_logout https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/pages/auth_logout/__init__.py
+wget -q --show-progress -P /etc/Panda/Panel/pages/auth_password https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/pages/auth_password/__init__.py
+wget -q --show-progress -P /etc/Panda/Panel/pages/auth_password_reset https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/pages/auth_password_reset/__init__.py
+wget -q --show-progress -P /etc/Panda/Panel/pages/index https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/pages/index/__init__.py
+wget -q --show-progress -P /etc/Panda/Panel/pages/manage https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/pages/manage/__init__.py
+
+wget -q --show-progress -P /etc/Panda/Panel/static/css https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/static/css/style.css
+wget -q --show-progress -P /etc/Panda/Panel/static/gif https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/static/gif/background.gif
+wget -q --show-progress -P /etc/Panda/Panel/static/js https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/static/js/mute.js
+wget -q --show-progress -P /etc/Panda/Panel/static/png https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/static/png/logo.png
+wget -q --show-progress -P /etc/Panda/Panel/static/png https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaPanel/static/png/server-icon.png
+
+pip3 install -r /etc/Panda/Panel/requirements.txt
+
+echo -e '#!/bin/bash\n\npython3 /etc/Panda/Panel/server.py' | tee /usr/local/bin/PandaPanel > /dev/null
+chmod +x /usr/local/bin/PandaPanel
+
 echo "-----------------------------"
 echo "Installed in /etc/Panda/Panel"
 echo "Run using PandaPanel command!"
