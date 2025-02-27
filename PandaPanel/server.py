@@ -27,11 +27,11 @@ def log(what):
 print = log
 
 def loginput(what):
-    #sys.stdout = sys.__stdout__
-    #sys.stderr = sys.__stderr__
+    sys.stdout = sys.__stdout__
+    sys.stderr = sys.__stderr__
     return_ = org_input(what)
-    #sys.stdout = open(os.devnull, 'w')
-    #sys.stderr = open(os.devnull, 'w')
+    sys.stdout = open(os.devnull, 'w')
+    sys.stderr = open(os.devnull, 'w')
     return return_
 
 input = loginput
