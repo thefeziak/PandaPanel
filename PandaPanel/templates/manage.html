@@ -41,6 +41,8 @@
 
     <iframe id="console" width="675" height="450" frameborder="0"></iframe>
 
+    <h2 class="session-text" id="session-text"></h2>
+
     <script>
         var currentUrl = window.location.href + '/console';
     
@@ -55,6 +57,12 @@
         async function do_action(action) {
             try {
                 const response = await fetch(window.location.href + `/${action}`);
+                const session = await response.text()
+                if (action === "sshx") {
+                    document.getElementById('session-text').textContent = `SSHX: ${session}`;
+                } else if (action === "tmate") {
+                    document.getElementById('session-text').textContent = `TMATE: ${session}`;
+                } else {}
             } catch (error) {}
         }
     </script>
