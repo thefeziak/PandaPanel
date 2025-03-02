@@ -65,7 +65,7 @@ async def tmate():
         result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
 
         try:
-            exec_cmd = await asyncio.create_subprocess_exec("docker", "exec", container_id, "tmate", "-F", stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
+            exec_cmd = await asyncio.create_subprocess_exec("docker", "exec", container_name, "tmate", "-F", stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
         except subprocess.CalledProcessError as e:
             return jsonify({'output': str(e)}), 400
 
@@ -92,7 +92,7 @@ async def sshx():
         result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
 
         try:
-            exec_cmd = await asyncio.create_subprocess_exec("docker", "exec", container_id, "sshx", stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
+            exec_cmd = await asyncio.create_subprocess_exec("docker", "exec", container_name, "sshx", stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
         except subprocess.CalledProcessError as e:
             return jsonify({'output': str(e)}), 400
 
