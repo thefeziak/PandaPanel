@@ -24,10 +24,10 @@ def execute():
         result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
 
         if result.returncode != 0:
-            return jsonify({'error': result.stderr}), 400
+            return jsonify({'output': result.stderr}), 400
         return jsonify({'output': result.stdout})
     except Exception as e:
-        return jsonify({'error': str(e)}), 400
+        return jsonify({'output': str(e)}), 400
     
 @app.route('/start')
 def start():
