@@ -4,11 +4,6 @@ import configparser
 import requests
 from function_file import username_to_id, list_servers, get_server_by_id, user_has_access, load_file_data
 import json
-from ansi2html import Ansi2HTMLConverter
-
-def ansi_to_html(text):
-    converter = Ansi2HTMLConverter()
-    return converter.convert(text)
 
 config = configparser.ConfigParser()
 config.read("panel.ini")
@@ -23,9 +18,7 @@ def do_action(action, id, fd, cmd="None"):
         if server:
             url = f"http://{node['Settings']['FQDN']}:{node['Settings']['Port']}/{action}?secret_key={secret_key}&container={id}&cmd={cmd}"
             try:
-                result = requests.get(url).text#, timeout=5).json()
-                result = ansi_to_html(result)
-                result = json.loads(result)
+                result = requests.get(url).json()#, timeout=5).json()
                 if "output" in result:
                     return result["output"]
                 elif "error" in result:
