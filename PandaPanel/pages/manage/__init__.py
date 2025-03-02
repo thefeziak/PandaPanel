@@ -3,12 +3,7 @@ from flask_login import current_user
 import configparser
 import requests
 from function_file import username_to_id, list_servers, get_server_by_id, user_has_access, load_file_data
-import re
 import json
-
-def remove_ansi(text):
-    ansi_escape = re.compile(r'\x1b\[[0-9;]*m')
-    return ansi_escape.sub('', text)
 
 config = configparser.ConfigParser()
 config.read("panel.ini")
@@ -24,7 +19,6 @@ def do_action(action, id, fd, cmd="None"):
             url = f"http://{node['Settings']['FQDN']}:{node['Settings']['Port']}/{action}?secret_key={secret_key}&container={id}&cmd={cmd}"
             try:
                 result = requests.get(url).text#, timeout=5).json()
-                result = remove_ansi(result)
                 result = json.loads(result)
                 if "output" in result:
                     return result["output"]
