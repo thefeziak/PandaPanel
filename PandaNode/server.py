@@ -19,7 +19,7 @@ def execute():
         if secret_key != secret_key_:
             return jsonify({'error': "Invalid secret key."}), 400
 
-        cmd = f"docker exec -it {container_name} {command}"
+        cmd = f"docker exec {container_name} bash -c {command}"
 
         result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
 
@@ -67,7 +67,7 @@ def stop():
     except Exception as e:
         return jsonify({'error': str(e)}), 400
     
-@app.route('/restart', methods=['POST'])
+@app.route('/restart')
 def restart():
     try:
         container_name = request.args.get('container_name')
@@ -86,7 +86,7 @@ def restart():
     except Exception as e:
         return jsonify({'error': str(e)}), 400
     
-@app.route('/delete', methods=['POST'])
+@app.route('/delete')
 def delete():
     try:
         container_name = request.args.get('container')
@@ -105,7 +105,7 @@ def delete():
     except Exception as e:
         return jsonify({'error': str(e)}), 400
     
-@app.route('/create', methods=['POST'])
+@app.route('/create')
 def create():
     try:
         secret_key = request.args.get('secret_key')
@@ -113,7 +113,7 @@ def create():
         if secret_key != secret_key_:
             return jsonify({'error': "Invalid secret key."}), 400
 
-        cmd = "docker run -itd --privileged --hostname panda --cap-add=ALL ubuntu:22.04"
+        cmd = "docker run -itd --privileged --hostname panda --cap-add=ALL ubuntu2204"
 
         result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
 
