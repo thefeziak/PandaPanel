@@ -19,7 +19,7 @@ def execute():
         if secret_key != secret_key_:
             return jsonify({'error': "Invalid secret key."}), 400
 
-        cmd = f"docker exec {container_name} bash -c {command}"
+        cmd = f'docker exec {container_name} bash -c "{command}"'
 
         result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
 
