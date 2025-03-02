@@ -75,8 +75,8 @@ def manage_execute(id):
 
 @bp.route('/manage/<id>/tmate')
 def manage_tmate(id):
-    return manage_action(id, "tmate", request.args["cmd"])
+    return manage_action(id, "tmate")
 
 @bp.route('/manage/<id>/sshx')
 def manage_sshx(id):
-    return manage_action(id, "sshx", request.args["cmd"])
+    return manage_action(id, "sshx")
