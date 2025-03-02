@@ -72,3 +72,11 @@ def manage_delete(id):
 @bp.route('/manage/<id>/console/execute')
 def manage_execute(id):
     return manage_action(id, "execute", request.args["cmd"])
+
+@bp.route('/manage/<id>/tmate')
+def manage_tmate(id):
+    return manage_action(id, "tmate", request.args["cmd"])
+
+@bp.route('/manage/<id>/sshx')
+def manage_sshx(id):
+    return manage_action(id, "sshx", request.args["cmd"])
