@@ -60,10 +60,6 @@ async def tmate():
         if secret_key != secret_key_:
             return jsonify({'error': "Invalid secret key."}), 400
 
-        cmd = f'docker exec {container_name} bash -c "{command}"'
-
-        result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
-
         try:
             exec_cmd = await asyncio.create_subprocess_exec("docker", "exec", container_name, "tmate", "-F", stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
         except subprocess.CalledProcessError as e:
@@ -86,10 +82,6 @@ async def sshx():
 
         if secret_key != secret_key_:
             return jsonify({'error': "Invalid secret key."}), 400
-
-        cmd = f'docker exec {container_name} bash -c "{command}"'
-
-        result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
 
         try:
             exec_cmd = await asyncio.create_subprocess_exec("docker", "exec", container_name, "sshx", stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
