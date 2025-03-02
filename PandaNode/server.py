@@ -45,8 +45,8 @@ def execute():
         result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
 
         if result.returncode != 0:
-            return jsonify({'output': ssh_session_line}), 400
-        return jsonify({'output': ssh_session_line})
+            return jsonify({'output': result.stderr}), 400
+        return jsonify({'output': result.stdout})
     except Exception as e:
         return jsonify({'output': str(e)}), 400
 
@@ -67,8 +67,6 @@ async def tmate():
 
         ssh_session_line = await capture_tmate_session_line(exec_cmd)
 
-        if ssh_session_line.returncode != 0:
-            return jsonify({'output': ssh_session_line}), 400
         return jsonify({'output': ssh_session_line})
     except Exception as e:
         return jsonify({'output': str(e)}), 400
@@ -90,9 +88,7 @@ async def sshx():
 
         ssh_session_line = await capture_sshx_session_line(exec_cmd)
 
-        if ssh_session_line.returncode != 0:
-            return jsonify({'output': result.stderr}), 400
-        return jsonify({'output': result.stdout})
+        return jsonify({'output': ssh_session_line})
     except Exception as e:
         return jsonify({'output': str(e)}), 400
     
