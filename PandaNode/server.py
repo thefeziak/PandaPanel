@@ -51,7 +51,7 @@ def execute():
         return jsonify({'output': str(e)}), 400
 
 @app.route('/tmate')
-def tmate():
+async def tmate():
     try:
         command = request.args.get('cmd')
         container_name = request.args.get('container')
@@ -78,7 +78,7 @@ def tmate():
         return jsonify({'output': str(e)}), 400
 
 @app.route('/sshx')
-def sshx():
+async def sshx():
     try:
         command = request.args.get('cmd')
         container_name = request.args.get('container')
