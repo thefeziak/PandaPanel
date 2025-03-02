@@ -10,6 +10,14 @@ body {
     background-color: #f7f7f7;
 }
 
+#session-text {
+    position: absolute;
+    top: 775px;
+    display: flex;
+    gap: 8px;
+    color: #76B637;
+}
+
 .buttons-container {
     position: absolute;
     top: 10px;
