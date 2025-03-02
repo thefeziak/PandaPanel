@@ -17,7 +17,7 @@ def do_action(action, id, fd, cmd="None"):
         if server:
             url = f"http://{node['Settings']['FQDN']}:{node['Settings']['Port']}/{action}?secret_key={secret_key}&container={id}&cmd={cmd}"
             try:
-                result = requests.get(url, timeout=5).json()
+                result = requests.get(url).json()#, timeout=5).json()
                 if "output" in result:
                     return result["output"]
                 elif "error" in result:
