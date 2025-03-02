@@ -1,6 +1,7 @@
 import subprocess
 from flask import Flask, request, jsonify
 import json
+import asyncio
 
 config = json.load(open("config.json", "r"))
 secret_key_ = config["SECRET_KEY"]
@@ -8,6 +9,26 @@ host = config["HOST"]
 port = config["PORT"]
 
 app = Flask(__name__)
+
+async def capture_tmate_session_line(process):
+    while True:
+        output = await process.stdout.readline()
+        if not output:
+            break
+        output = output.decode('utf-8').strip()
+        if "ssh session:" in output:
+            return output.split("ssh session:")[1].strip()
+    return None
+
+async def capture_sshx_session_line(process):
+    while True:
+        output = await process.stdout.readline()
+        if not output:
+            break
+        output = output.decode('utf-8').strip()
+        if "Link:" in output:
+            return output.split("ssh session:")[1].strip()
+    return None
 
 @app.route('/execute')
 def execute():
@@ -22,6 +43,60 @@ def execute():
         cmd = f'docker exec {container_name} bash -c "{command}"'
 
         result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+
+        if result.returncode != 0:
+            return jsonify({'output': result.stderr}), 400
+        return jsonify({'output': result.stdout})
+    except Exception as e:
+        return jsonify({'output': str(e)}), 400
+
+@app.route('/tmate')
+def tmate():
+    try:
+        command = request.args.get('cmd')
+        container_name = request.args.get('container')
+        secret_key = request.args.get('secret_key')
+
+        if secret_key != secret_key_:
+            return jsonify({'error': "Invalid secret key."}), 400
+
+        cmd = f'docker exec {container_name} bash -c "{command}"'
+
+        result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+
+        try:
+            exec_cmd = await asyncio.create_subprocess_exec("docker", "exec", container_id, "tmate", "-F", stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
+        except subprocess.CalledProcessError as e:
+            return jsonify({'output': str(e)}), 400
+
+        ssh_session_line = await capture_tmate_session_line(exec_cmd)
+
+        if result.returncode != 0:
+            return jsonify({'output': result.stderr}), 400
+        return jsonify({'output': result.stdout})
+    except Exception as e:
+        return jsonify({'output': str(e)}), 400
+
+@app.route('/sshx')
+def sshx():
+    try:
+        command = request.args.get('cmd')
+        container_name = request.args.get('container')
+        secret_key = request.args.get('secret_key')
+
+        if secret_key != secret_key_:
+            return jsonify({'error': "Invalid secret key."}), 400
+
+        cmd = f'docker exec {container_name} bash -c "{command}"'
+
+        result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+
+        try:
+            exec_cmd = await asyncio.create_subprocess_exec("docker", "exec", container_id, "sshx", stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
+        except subprocess.CalledProcessError as e:
+            return jsonify({'output': str(e)}), 400
+
+        ssh_session_line = await capture_sshx_session_line(exec_cmd)
 
         if result.returncode != 0:
             return jsonify({'output': result.stderr}), 400
