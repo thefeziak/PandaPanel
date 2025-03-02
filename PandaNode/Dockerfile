@@ -8,6 +8,8 @@ RUN printf '#!/bin/sh\nexit 0' > /usr/sbin/policy-rc.d
 RUN apt-get install -y systemd systemd-sysv dbus dbus-user-session
 RUN printf "systemctl start systemd-logind" >> /etc/profile
 RUN apt install curl -y
+RUN apt install tmate -y
+RUN curl -sSf https://sshx.io/get | sh
 RUN apt install ufw -y && ufw allow 80 && ufw allow 443 && apt install net-tools -y
 RUN apt-get update && apt-get install -y \
     iproute2 \
