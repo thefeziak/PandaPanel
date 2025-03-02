@@ -12,7 +12,7 @@ app = Flask(__name__)
 @app.route('/execute')
 def execute():
     try:
-        command = request.args.get('command')
+        command = request.args.get('cmd')
         container_name = request.args.get('container')
         secret_key = request.args.get('secret_key')
 
