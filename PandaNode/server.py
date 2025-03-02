@@ -67,7 +67,7 @@ async def tmate():
 
         ssh_session_line = await capture_tmate_session_line(exec_cmd)
 
-        if result.returncode != 0:
+        if ssh_session_line.returncode != 0:
             return jsonify({'output': ssh_session_line}), 400
         return jsonify({'output': ssh_session_line})
     except Exception as e:
@@ -90,7 +90,7 @@ async def sshx():
 
         ssh_session_line = await capture_sshx_session_line(exec_cmd)
 
-        if result.returncode != 0:
+        if ssh_session_line.returncode != 0:
             return jsonify({'output': result.stderr}), 400
         return jsonify({'output': result.stdout})
     except Exception as e:
