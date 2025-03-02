@@ -93,9 +93,9 @@
             input.addEventListener('keydown', function (e) {
                 if (e.key === 'Enter') {
                     const command = input.value.trim();
-                    executeCommand(command);
                     input.disabled = true;
                     input.blur();
+                    executeCommand(command);
                 }
             });
 
@@ -103,6 +103,12 @@
         }
 
         async function executeCommand(cmd) {
+            if (cmd.toLowerCase() === 'clear') {
+                terminal.innerHTML = '';
+                createInputLine();
+                return;
+            }
+
             const output = document.createElement('div');
             output.className = 'output';
             let api_output;
