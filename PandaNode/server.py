@@ -27,7 +27,7 @@ async def capture_sshx_session_line(process):
             break
         output = output.decode('utf-8').strip()
         if "Link:" in output:
-            return output.split("ssh session:")[1].strip()
+            return output.split("Link:")[1].strip().replace("\u001b[4;36m", "").replace("\u001b[0m", "")
     return None
 
 @app.route('/execute')
