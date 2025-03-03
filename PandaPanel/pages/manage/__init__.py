@@ -18,11 +18,10 @@ def do_action(action, id, fd, cmd="None"):
         if server:
             url = f"http://{node['Settings']['FQDN']}:{node['Settings']['Port']}/{action}?secret_key={secret_key}&container={id}&cmd={cmd}"
             try:
-                result = requests.get(url)#, timeout=5).json()
-                if "<title>500 Internal Server Error</title>" in result.text:
-                    return "VPS must be enabled."
-                result = result.json()
+                result = requests.get(url).json()#, timeout=5).json()
                 if "output" in result:
+                    if result["output"] is None:
+                        return "VPS must be enabled."
                     return result["output"]
                 elif "error" in result:
                     return result["error"]
