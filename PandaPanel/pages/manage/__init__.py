@@ -19,10 +19,10 @@ def do_action(action, id, fd, cmd="None"):
             url = f"http://{node['Settings']['FQDN']}:{node['Settings']['Port']}/{action}?secret_key={secret_key}&container={id}&cmd={cmd}"
             try:
                 result = requests.get(url)#, timeout=5).json()
-                if action == "sshx" or action == "tmate":
-                    if str(result.status_code) == "500":
-                        return "VPS must be enabled."
-                result = result.json()
+                try:
+                    result = result.json()
+                except ValueError:
+                    return "VPS must be enabled."
                 if "output" in result:
                     return result["output"]
                 elif "error" in result:
