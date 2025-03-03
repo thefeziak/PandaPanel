@@ -8,11 +8,6 @@ from datetime import datetime
 from flask_login import LoginManager
 from function_file import *
 import sys
-from ansi2html import Ansi2HTMLConverter
-
-def ansi_to_html(text):
-    converter = Ansi2HTMLConverter()
-    return converter.convert(text)
 
 os.system('')
 
@@ -55,7 +50,6 @@ smtp_from_address = config["smtp"]["from_address"]
 smtp_from_name = config["smtp"]["from_name"]
 
 app = Flask(__name__)
-app.jinja_env.filters['ansi_to_html'] = ansi_to_html
 app.secret_key = panel_secret_key
 app.config['REMEMBER_COOKIE_DURATION'] = timedelta(minutes=3600)
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(seconds=3600)
