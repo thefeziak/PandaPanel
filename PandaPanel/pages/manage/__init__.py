@@ -18,7 +18,10 @@ def do_action(action, id, fd, cmd="None"):
         if server:
             url = f"http://{node['Settings']['FQDN']}:{node['Settings']['Port']}/{action}?secret_key={secret_key}&container={id}&cmd={cmd}"
             try:
-                result = requests.get(url).json()#, timeout=5).json()
+                result = requests.get(url)#, timeout=5).json()
+                if str(result.status_code) == "500" and action == "tmate" or action == "sshx":
+                    return "VPS must be enabled."
+                result = result.json()
                 if "output" in result:
                     return result["output"]
                 elif "error" in result:
@@ -80,3 +83,7 @@ def manage_tmate(id):
 @bp.route('/manage/<id>/sshx')
 def manage_sshx(id):
     return manage_action(id, "sshx")
+
+@bp.route('/manage/create')
+def manage_create():
+    return manage_action("None", "create")
