@@ -20,7 +20,7 @@ def do_action(action, id, fd, cmd="None"):
             try:
                 result = requests.get(url)#, timeout=5).json()
                 if action == "sshx" or action == "tmate":
-                    if str(result.status_code) == "500:
+                    if str(result.status_code) == "500":
                         return "VPS must be enabled."
                 result = result.json()
                 if "output" in result:
