@@ -77,7 +77,7 @@ install_panel() {
     
     pip3 install -r /etc/Panda/Panel/requirements.txt
     
-    echo -e '#!/bin/bash\n\npython3 /etc/Panda/Panel/server.py' | tee /usr/local/bin/PandaPanel > /dev/null
+    echo -e '#!/bin/bash\n\ncd /etc/Panda/Panel/ && python3 server.py' | tee /usr/local/bin/PandaPanel > /dev/null
     chmod +x /usr/local/bin/PandaPanel
     
     echo "-----------------------------"
@@ -104,9 +104,9 @@ install_node() {
     mkdir DockerConfiguration
     cd DockerConfiguration
     wget -q --show-progress "https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/PandaNode/Dockerfile"
-    docker build -t ubuntu2204 .
+    docker build -t panduntu22-04 .
     
-    echo -e '#!/bin/bash\n\npython3 /etc/Panda/Node/server.py' | tee /bin/PandaNode > /dev/null
+    echo -e '#!/bin/bash\n\nncd /etc/Panda/Node/ && python3 server.py' | tee /bin/PandaNode > /dev/null
     chmod +x /bin/PandaNode
     
     echo "---------- Done ------------"
