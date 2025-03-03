@@ -10,7 +10,7 @@ PandaPanel is a free, open-source vps management panel built with Python.
 
 ## Installation:
 ```bash
-bash <(curl -s https://pterodactyl-installer.se)
+bash <(curl -s https://raw.githubusercontent.com/thefeziak/PandaPanel/refs/heads/main/install.sh)
 ```
 
 ## License
