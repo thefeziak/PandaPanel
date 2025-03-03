@@ -2,6 +2,7 @@ import subprocess
 from flask import Flask, request, jsonify
 import json
 import asyncio
+import random
 
 config = json.load(open("config.json", "r"))
 secret_key_ = config["SECRET_KEY"]
@@ -176,7 +177,7 @@ def create():
         if secret_key != secret_key_:
             return jsonify({'error': "Invalid secret key."}), 400
 
-        cmd = "docker run -itd --privileged --hostname panda --cap-add=ALL ubuntu2204"
+        cmd = f"docker run -itd --privileged --hostname {random.randint(1111,9999} --cap-add=ALL panduntu22-04"
 
         result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
 
