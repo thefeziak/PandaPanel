@@ -134,7 +134,7 @@ def stop():
 @app.route('/restart')
 def restart():
     try:
-        container_name = request.args.get('container_name')
+        container_name = request.args.get('container')
         secret_key = request.args.get('secret_key')
 
         if secret_key != secret_key_:
