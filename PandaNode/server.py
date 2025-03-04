@@ -177,7 +177,7 @@ def create():
         if secret_key != secret_key_:
             return jsonify({'error': "Invalid secret key."}), 400
  
-        cmd = f"docker run -itd --privileged --hostname panda-{random.randint(1111,9999)} --cap-add=ALL panduntu22-04"
+        cmd = f"docker run -itd --privileged --hostname panda-{random.randint(1111,9999)} --cap-add=ALL --memory=2g --memory-swap=2g --cpus=1 panduntu22-04"
 
         result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
 
